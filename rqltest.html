@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>RQL Test</title>
+	
+	<!-- Hack Support for ES6 Modules -->
+	<script src="./lib/traceur.js"></script>
+	<script src="./lib/es6-module-loader-dev.js"></script>
+	
+	<script type="text/javascript">
+		// http://localhost:6003/mysticVale.html
+
+		// try to make a basic board game, see what is required
+		window.onload = function () {
+			System.import('./js/RqlArray.mod.js').then(rqlMod => {
+				const rqlArray = new rqlMod.RqlArray();
+				console.log('array object', rqlArray);
+
+				const data = [{name: "Danbo", age: 25}, {name: "Jimbo", age: 45}, {name: "Hambo", age: 31}];
+				const query = "lt(age,40)";
+				const result = rqlArray.executeQuery(query, {}, data);
+
+				console.log('test result', result);
+			});
+
+		}
+	</script>
+</head>
+
+<body>
+	Check your console to see if things did good work
+</body>
+
+</html>
+
+
